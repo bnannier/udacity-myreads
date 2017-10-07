@@ -11,25 +11,20 @@ class ListBooks extends Component {
     componentDidMount() {
         BooksAPI.getAll().then((shelfBooks) => {
             this.setState({shelfBooks});
-        })
+        });
     }
 
     render() {
-        let shelfBooks = this.state.shelfBooks;
         return (
             <div className="list-books">
                 <div className="list-books-title">
-                    <h1>Bobby's Book Shelf</h1>
+                    <h1>Bobby's Shelf</h1>
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <BookShelf
-                            shelfBooks={shelfBooks.filter((books) => RegExp("currentlyReading").test(books.shelf))}
-                            shelName="Currently Reading"/>
-                        <BookShelf shelfBooks={shelfBooks.filter((books) => RegExp("wantToRead").test(books.shelf))}
-                                   shelName="Want to Read"/>
-                        <BookShelf shelfBooks={shelfBooks.filter((books) => RegExp("read").test(books.shelf))}
-                                   shelName="Read"/>
+                        <BookShelf shelfBooks={this.state.shelfBooks} shelfName="Currently Reading" shelfType="currentlyReading" />
+                        <BookShelf shelfBooks={this.state.shelfBooks} shelfName="Want To Read" shelfType="wantToRead" />
+                        <BookShelf shelfBooks={this.state.shelfBooks} shelfName="Read" shelfType="read" />
                     </div>
                 </div>
                 <div className="open-search">

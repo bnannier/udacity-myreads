@@ -5,10 +5,10 @@ class BookShelf extends Component {
     render() {
         return (
             <div className="bookshelf">
-                <h2 className="bookshelf-title">{this.props.shelName}</h2>
+                <h2 className="bookshelf-title">{this.props.shelfName}</h2>
                 <div className="bookshelf-books">
                     <ol className="books-grid">
-                        {this.props.shelfBooks.map((book) => (
+                        {this.props.shelfBooks.filter((books) => RegExp(this.props.shelfType).test(books.shelf)).map((book) => (
                             <Book key={book.id} book={book}/>
                         ))}
                     </ol>
@@ -17,5 +17,6 @@ class BookShelf extends Component {
         )
     }
 }
+
 
 export default BookShelf
