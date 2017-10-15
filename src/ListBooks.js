@@ -1,19 +1,9 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
-import * as BooksAPI from './BooksAPI'
 
 class ListBooks extends Component {
-    state = {
-        shelfBooks: [],
-    }
-
-    componentDidMount() {
-        BooksAPI.getAll().then((shelfBooks) => {
-            this.setState({shelfBooks});
-        });
-    }
-
+    // Render the three different types of shelf and navigation button to search
     render() {
         return (
             <div className="list-books">
@@ -22,9 +12,18 @@ class ListBooks extends Component {
                 </div>
                 <div className="list-books-content">
                     <div>
-                        <BookShelf shelfBooks={this.state.shelfBooks} shelfName="Currently Reading" shelfType="currentlyReading" />
-                        <BookShelf shelfBooks={this.state.shelfBooks} shelfName="Want To Read" shelfType="wantToRead" />
-                        <BookShelf shelfBooks={this.state.shelfBooks} shelfName="Read" shelfType="read" />
+                        <BookShelf shelfBooks={this.props.shelfBooks}
+                                   updateBook={this.props.updateBook}
+                                   shelfName="Currently Reading"
+                                   shelfType="currentlyReading"/>
+                        <BookShelf shelfBooks={this.props.shelfBooks}
+                                   updateBook={this.props.updateBook}
+                                   shelfName="Want To Read"
+                                   shelfType="wantToRead"/>
+                        <BookShelf shelfBooks={this.props.shelfBooks}
+                                   updateBook={this.props.updateBook}
+                                   shelfName="Read"
+                                   shelfType="read"/>
                     </div>
                 </div>
                 <div className="open-search">

@@ -1,24 +1,13 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 
 class Book extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {value: props.book.shelf};
-    }
+    state = {value: this.props.book.shelf}
 
-    handleChange = (e) => {
-        e.preventDefault()
-        this.setState({value: e.target.value});
-        BooksAPI.update(this.props.book, e.target.value)
-        this.props.renderBookShelf;
-    }
-
+    // Render the book being passed in
     render() {
         const {book} = this.props;
-        console.dir(book)
 
-        if(book.id !== null) {
+        if (book.id !== null) {
             return (
                 <li>
                     <div className="book">
@@ -29,7 +18,8 @@ class Book extends Component {
                                 backgroundImage: `url(${book.imageLinks.smallThumbnail})`
                             }}></div>
                             <div className="book-shelf-changer">
-                                <select value={this.state.value} onChange={this.handleChange}>
+                                <select value={this.state.value}
+                                        onChange={(event) => this.props.updateBook(this.props.book, event.target.value)}>
                                     <option value="none" disabled>Move to...</option>
                                     <option value="currentlyReading">Currently Reading</option>
                                     <option value="wantToRead">Want to Read</option>
@@ -45,15 +35,12 @@ class Book extends Component {
                     </div>
                 </li>
             )
-        }else {
+        } else {
             return null
         }
     }
 
-    selectedShelf() {
-
-    }
-
+    // Handle books with multiple authors
     renderAuthorName(authors) {
         if (authors !== undefined) {
             return (
