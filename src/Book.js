@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 
+/**
+ * @description A single book thats to be rendered.
+ */
 class Book extends Component {
     state = {value: this.props.book.shelf}
 
-    // Render the book being passed in
+
+    /**
+     * @description Render the book being passed in.
+     */
     render() {
         const {book} = this.props;
 
@@ -40,7 +46,11 @@ class Book extends Component {
         }
     }
 
-    // Handle books with multiple authors
+
+    /**
+     * @description Handle books with multiple authors.
+     * @param {string[]} The author(s) name to be displayed
+     */
     renderAuthorName(authors) {
         if (authors !== undefined) {
             return (

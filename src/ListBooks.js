@@ -2,8 +2,13 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import BookShelf from './BookShelf'
 
+/**
+ * @description List all the books on the shelf(s).
+ */
 class ListBooks extends Component {
-    // Render the three different types of shelf and navigation button to search
+    /**
+     * @description Render the three different types of shelf and navigation button to search.
+     */
     render() {
         return (
             <div className="list-books">

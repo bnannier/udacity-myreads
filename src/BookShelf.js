@@ -1,8 +1,13 @@
 import React, { Component } from 'react'
 import Book from './Book'
 
+/**
+ * @description A single book shelf with all the books associated with the status.
+ */
 class BookShelf extends Component {
-    // Render the book shelf in question
+    /**
+     * @description Render the book shelf in question.
+     */
     render() {
         return (
             <div className="bookshelf">

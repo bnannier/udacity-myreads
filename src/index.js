@@ -4,4 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './index.css'
 
+/**
+ * @description Wire-up browser router for the application.
+ */
 ReactDOM.render(<BrowserRouter><App /></BrowserRouter>, document.getElementById('root'))
