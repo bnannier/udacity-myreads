@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import defaultBookImage from './icons/default-book.png';
 
 /**
  * @description A single book thats to be rendered.
@@ -21,7 +22,7 @@ class Book extends Component {
                             <div className="book-cover" style={{
                                 width: 128,
                                 height: 193,
-                                backgroundImage: `url(${book.imageLinks.smallThumbnail})`
+                                backgroundImage: `url(${book.imageLinks.smallThumbnail ? book.imageLinks.smallThumbnail : defaultBookImage})`
                             }}></div>
                             <div className="book-shelf-changer">
                                 <select value={this.state.value}

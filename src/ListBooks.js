@@ -7,34 +7,51 @@ import BookShelf from './BookShelf'
  */
 class ListBooks extends Component {
     /**
-     * @description Render the three different types of shelf and navigation button to search.
+     * @description Render the layout for the shelves and navigation button to search.
      */
     render() {
+        const shelves = [
+            {
+                id: 'currentlyReading',
+                title: 'Currently Reading'
+            },
+            {
+                id: 'wantToRead',
+                title: 'Want To Read'
+            },
+            {
+                id: 'read',
+                title: 'Read'
+            },
+        ]
+
         return (
             <div className="list-books">
                 <div className="list-books-title">
                     <h1>Bobby's Shelf</h1>
                 </div>
                 <div className="list-books-content">
-                    <div>
-                        <BookShelf shelfBooks={this.props.shelfBooks}
-                                   updateBook={this.props.updateBook}
-                                   shelfName="Currently Reading"
-                                   shelfType="currentlyReading"/>
-                        <BookShelf shelfBooks={this.props.shelfBooks}
-                                   updateBook={this.props.updateBook}
-                                   shelfName="Want To Read"
-                                   shelfType="wantToRead"/>
-                        <BookShelf shelfBooks={this.props.shelfBooks}
-                                   updateBook={this.props.updateBook}
-                                   shelfName="Read"
-                                   shelfType="read"/>
-                    </div>
+                    {this.renderShelves(shelves)}
                 </div>
                 <div className="open-search">
                     <Link className='close-create-contact' to='/search'>Add a book</Link>
                 </div>
             </div>
+        )
+    }
+
+    /**
+     * @description Render the individual shelf.
+     */
+    renderShelves(shelves) {
+        return (
+            shelves.map(shelf => (
+                    <BookShelf shelfBooks={this.props.shelfBooks}
+                               updateBook={this.props.updateBook}
+                               shelfName={shelf.title}
+                               shelfType={shelf.id}/>
+                )
+            )
         )
     }
 }

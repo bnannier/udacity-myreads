@@ -11,7 +11,7 @@ import './App.css'
  */
 class BooksApp extends React.Component {
     state = {
-        shelfBooks: [],
+        shelfBooks: []
     }
 
 
@@ -30,13 +30,13 @@ class BooksApp extends React.Component {
         BooksAPI.getAll().then((shelfBooks) => {
             this.setState({shelfBooks});
         });
-    };
+    }
 
 
     /**
      * @description Update the book shelf with a chosen book.
      * @param {Object} book - The book being assigned to a shelf
-     * @param {string} shelf - The shelf the book should be assigned to
+     * @param {string[]} shelf - The shelf the book should be assigned to
      */
     updateBook = (book, shelf) => {
         // Retrieve all the books on the shelf
@@ -50,16 +50,16 @@ class BooksApp extends React.Component {
             books[books.findIndex(i => i.id === book.id)].shelf = shelf;
         }
         else { // Else book is being newly added to the shelf
-            books.push(book);
+            book.shelf = shelf;
+            books = books.concat(book);
         }
 
         // Update database with the updated book shelf
-        BooksAPI.update(book, shelf).then(book => {
-            this.setState(state => ({
-                shelfBooks: books
+        BooksAPI.update(book, shelf).then(
+            this.setState({
+                shelfBooks: books,
             }))
-        })
-    };
+    }
 
 
     /**
